@@ -144,7 +144,8 @@ export default {
     },
     getTime () {
       this.timer = setInterval(() => {
-        this.currentTime = parseInt(this.audioDom.currentTime)
+        const time = parseInt(this.audioDom.currentTime)
+        console.log(Math.floor(time / 60) + ':' + (time % 60 / 100).toFixed(2).slice(-2))
         this.progress = (this.currentTime / this.duration) * 100
       }, 1000)
     }
