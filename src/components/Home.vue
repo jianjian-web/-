@@ -25,7 +25,7 @@
        </p>
     </div>
   <div class='voice'>
-    <audio controls ref='audio' style='position: absolute;'>
+    <audio ref='audio'>
       <source src="../assets/audio/test.mp3" type="audio/mp3" >
     </audio>
     <div class='wrapper'>
@@ -33,15 +33,20 @@
       <img src="../assets/img/icon_voice_nor.png" alt="">
       <div class='voiceProgress'>
         <i>(部分音源片段因为隐私已屏蔽处理)</i>
-           <div class='voiceLeft' :style="{ width: progress+'%' }">
-            <div class='voicePoint' @click='play=!play'>
+           <div class='voiceLeft' :style="{ width: progress+'%'}">
+            <div class='voicePoint' 
+            @click='play=!play' 
+            draggable="true" 
+            @dragstart='handleDrag' 
+            @dragend='handleDragEnd'
+            >
               <span class='point1'></span>
               <span class='point2'></span>
             </div>  
            </div>   <!--// 已经播放的进度 -->
       </div>
       <span class='startTime'>{{currentTime}}</span>
-      <span class='endTime'>{{duration}}</span>
+      <span class='endTime'>{{totleTime}}</span>
     </div>
   </div>
   <div class='wrapper footWrapper'>
@@ -65,7 +70,8 @@ export default {
   name: 'home',
   data () {
     return {
-      currentTime: 0,
+      currentTime: '00:00',
+      totleTime: '00:00',
       duration: 0,
       progress: 0,
       play: false,
@@ -142,18 +148,31 @@ export default {
     pauseAudio () {
       this.audioDom.pause()
     },
+    formatter (value) {
+      return Math.floor(value / 60) + ':' + (value % 60 / 100).toFixed(2).slice(-2)
+    },
     getTime () {
       this.timer = setInterval(() => {
         const time = parseInt(this.audioDom.currentTime)
-        console.log(Math.floor(time / 60) + ':' + (time % 60 / 100).toFixed(2).slice(-2))
-        this.progress = (this.currentTime / this.duration) * 100
-      }, 1000)
+        this.currentTime = this.formatter(time)
+        this.progress = (time / this.duration) * 100
+      }, 200)
+    },
+    handleDrag (e) {
+      this.play = false
+    },
+    handleDragEnd (e) {
+      const offset = (this.duration / 716) * e.offsetX
+      this.audioDom.currentTime = parseInt(this.audioDom.currentTime + offset)
+      this.play = true
     }
+
   },
   mounted () {
     this.audioDom = this.$refs.audio
     this.audioDom.addEventListener('canplay', () => {
       this.duration = parseInt(this.audioDom.duration)
+      this.totleTime = this.formatter(this.duration)
     })
   },
   watch: {
