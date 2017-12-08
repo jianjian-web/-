@@ -12,7 +12,7 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family:'Microsoft YaHei', 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
@@ -40,5 +40,13 @@ p,ul,li{
 }
 .rt{
   float: right;
+}
+@media screen and (max-width: 768px){
+  #app {
+    font-size:12px!important;
+  }
+  .wrapper{
+    width:100%;
+  }
 }
 </style>

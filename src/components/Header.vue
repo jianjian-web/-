@@ -35,7 +35,6 @@ export default {
       .btn{
         font-size:18px;
         padding:8px 31px;
-        border:1px solid transparent;
         border-radius: 15px;
         cursor: pointer;
       }
@@ -43,9 +42,11 @@ export default {
         color:#fff;
         border-color: #fff;
         margin-right:18px;
+        border:1px solid #fff;
       }
       .bgColor{
         background-image: linear-gradient(225deg, #00ffff 0%, #7dffc9 45%, #faff93 100%);
+        color:#666;
       }
     }
   }

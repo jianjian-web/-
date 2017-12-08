@@ -4,12 +4,15 @@
       <img src="../assets/img/bg_big_nor.png" alt="">
     </div>
     <div class='wrapper'>
-      <my-header></my-header>
+      <my-header class='myHeader'></my-header>
       <div class='headText'>
-        <p class='title'>我们为您提供更贴近客户的回访解决方案</p>
+        <p class='title'>更贴近客户的回访解决方案</p>
         <p class='content'>
-          智能化客户回访及数据分析，让您节约成本的同时，获得可观 <br> 的反馈回报，时间投入得到更充分的应用。
+          智能化客户回访及数据分析，让您节约成本的同时，获得可观的反馈回报，时间投入得到更充分的应用。
         </p>
+        <div class='img_small'>
+          <img src="../assets/img/bg_top_nor.png" alt="">
+        </div>
       </div>
       <p class='partTitle'><span>产品的功能</span></p>
       <ul class="product">
@@ -30,9 +33,9 @@
     </audio>
     <div class='wrapper'>
       <p class='voiceTitle'>录音过程示范</p>
+      <i class='voiceSmallTitle'>(部分音源片段因为隐私已屏蔽处理)</i>
       <img src="../assets/img/icon_voice_nor.png" alt="">
       <div class='voiceProgress'>
-        <i>(部分音源片段因为隐私已屏蔽处理)</i>
            <div class='voiceLeft' :style="{ width: progress+'%'}">
             <div class='voicePoint' 
             @click='play=!play' 
@@ -201,8 +204,8 @@ export default {
       z-index:-1;
       top:0;
       right: 0;
-      width:60%;
-      height:800px;
+      width:65%;
+      height:1000px;
       img{
         width:100%;
         height:auto;
@@ -212,14 +215,28 @@ export default {
       padding-left:20px;
       margin-top:200px;
       margin-bottom:250px;
+      position: relative;
       .title{
         font-size:34px;
         margin-bottom:45px;
+        color:#008df8;
+        font-weight: bold;
+        text-shadow: 15px 10px 5px #ddd;
       }
       .content{
-        font-size:24px;
-        color:#666;
-        line-height: 36px;
+        font-size:18px;
+        color:#008df8;
+        line-height: 40px;
+        width:490px;
+        text-shadow: 10px 8px 2px #ddd;
+      }
+      .img_small{
+        position: absolute;
+        top:-75px;
+        left:620px;
+        img{
+          width:100%;
+        }
       }
     }
     .partTitle{
@@ -319,6 +336,13 @@ export default {
           width:100%;
           text-align: center;
         }
+        .voiceSmallTitle{
+          position: absolute;
+          font-style: normal;
+          top:22px;
+          left:50%;
+          transform: translate(-50%,0)
+        }
         .voiceProgress{
           display: inline-block;
           height: 8px;
@@ -326,15 +350,6 @@ export default {
           background:#a0a0a0;
           margin-left:130px;
           position: relative;
-          i{
-            line-height: 12px;
-            font-size: 12px;
-            position: absolute;
-            left: 50%;
-            top:20px;
-            font-style: normal;
-            transform: translate(-50%,0);
-          }
           .voiceLeft{
             background:#008DF8;
             height:8px;
@@ -426,6 +441,68 @@ export default {
         img{
           width:80%;
           height:auto;
+        }
+      }
+    }
+    @media only screen and(max-width: 768px){
+    .wrapper{
+      .content{
+          width:100%;
+        }
+      .headText{
+          margin-top:120px;
+          margin-bottom:100px;
+          padding:0 32px;
+          .title{
+            font-size:26px;
+          }
+          .content{
+            font-size:18px;
+          }
+        }
+      .product{
+        justify-content: center;
+        padding:0 40px;
+        li{
+          margin:40px;
+        }
+      }
+      .myHeader{
+        display: none;
+      }
+      }
+      .voice{
+        display: none;
+      }
+      .footWrapper{
+        width:100%;
+        margin-top:60px;
+        .foot{
+          padding:0;
+          margin-bottom:150px;
+          .item{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom:40px;
+            img{
+              margin:0;
+              width:100px;
+            }
+            .itemRight{
+              width:100%;
+              text-align: center;
+              .itemTitle{
+                padding:0;
+                border-left:none;
+              }
+              .itemContent{
+                width:100%;
+                text-align: center;
+                padding-right:20px;
+              }
+            }
+          }
         }
       }
     }
